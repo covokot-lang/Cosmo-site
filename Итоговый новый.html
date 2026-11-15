@@ -1,0 +1,261 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ЦУП · Гавшина А.В.</title>
+<style>
+:root{--bg:#04040e;--c:#0c0c22;--l:#23244a;--cy:#5ff5ff;--or:#ffa13a;--gr:#74ff7a;--pu:#8a2be2;--t:#e8e8ff;--m:#8b8cb0}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg) radial-gradient(#ffffff14 1px,transparent 1px) 0 0/40px 40px;color:var(--t);font:16px/1.5 system-ui,sans-serif;padding:16px 14px 60px}
+.w{max-width:1100px;margin:auto}
+h1{text-align:center;color:var(--cy);text-shadow:0 0 18px #5ff5ff66;font-size:clamp(22px,4vw,40px);margin:6px 0;text-transform:uppercase}
+.s{text-align:center;color:var(--m);margin:0 0 14px}
+nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:16px}
+nav a{color:var(--cy);text-decoration:none;border:1px solid var(--l);border-radius:99px;padding:6px 14px;font-size:14px}
+section{background:var(--c);border:1px solid var(--l);border-radius:18px;padding:18px 22px;margin-bottom:20px}
+h2{margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--l);font-size:18px;text-transform:uppercase}
+.or{color:var(--or)}.gr{color:var(--gr)}.cy{color:var(--cy)}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:20px}@media(max-width:800px){.g{grid-template-columns:1fr}}
+input,textarea,select{width:100%;background:#080818;border:1px solid var(--cy);border-radius:8px;color:var(--t);padding:10px 12px;font:inherit;margin-bottom:10px}
+button{cursor:pointer;font:inherit;border:0;border-radius:10px;padding:9px 15px;color:#fff;background:#2a2b5a}
+button:hover{filter:brightness(1.25)}button:disabled{opacity:.5;cursor:wait}
+.main{width:100%;padding:13px;font-weight:700;background:linear-gradient(90deg,#8a2be2,#5a1bb0)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.tab{flex:1;min-width:100px;border-radius:99px;border:1px solid var(--l);background:#12122e;color:var(--m);font-weight:700;padding:11px}
+.tab.on{background:var(--gr);color:#04140a;box-shadow:0 0 16px #74ff7a55}
+.drop{border:2px dashed var(--pu);border-radius:12px;padding:22px 10px;text-align:center;margin-bottom:10px;cursor:pointer;background:#0b0b24}
+.pv{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.pv img{height:70px;border-radius:6px}
+.out{background:#030312;border-left:4px solid var(--cy);border-radius:8px;padding:14px;min-height:160px;max-height:520px;overflow:auto;white-space:pre-wrap;font:14px/1.6 ui-monospace,Menlo,monospace}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px;margin-bottom:12px}
+caption{text-align:left;color:var(--or);font-weight:700;padding:4px 0}
+td,th{border:1px solid var(--l);padding:6px 10px}th{background:#14153a;color:var(--or)}
+td.w2{color:var(--or)}td.ls{background:#1f3a21;color:#caffd0}td.ls div+div{margin-top:6px;padding-top:4px;border-top:1px solid var(--l)}td{min-width:90px}.dh{color:var(--cy);margin:16px 0 6px;font-size:17px;text-transform:uppercase;border-bottom:1px solid var(--l)}
+.r{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.m{color:var(--m);font-size:13px}
+.it{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--l);border-radius:10px;padding:9px 11px;margin-bottom:9px;background:#0a0a1f}
+.it .b{flex:1;min-width:0}.it b{display:block}.it span{white-space:pre-wrap;word-break:break-word;color:var(--m);font-size:14px}
+.bt{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.bt button{padding:5px 10px;font-size:13px}.x{background:#4a1530!important}
+#err{display:none;background:#4a1530;border:1px solid #f55;padding:10px;border-radius:8px;margin-bottom:12px}
+pre{background:#030312;padding:10px;border-radius:8px;overflow:auto;font-size:12px}
+td.ed{outline:2px solid var(--or);outline-offset:-2px}td[contenteditable]{cursor:text;background:#101034;white-space:pre-wrap}
+@media(max-width:600px){body{padding:10px 8px 50px}section{padding:14px 12px}.it{flex-direction:column}.bt{justify-content:flex-start}td,th{padding:5px 6px;font-size:13px}td{min-width:0!important}.tab{min-width:60px;padding:9px 6px}}
+.qw{height:600px;overflow-y:auto;border:1px solid var(--cy);border-radius:12px;background:#0b0f19;margin:10px 0}#qf{width:100%;height:1150px;border:0;display:block;background:#0b0f19}
+@media(max-width:600px){.qw{height:640px}#qf{height:1500px}}
+@media print{body{background:#fff;color:#000}body.pr .w>*:not(#res){display:none}body.pr #res button{display:none}.out{max-height:none;border:0;color:#000;background:#fff}}
+</style></head><body><div class="w"><div id="err"></div>
+<h1>🛰️ Модуль ЦУП: Гавшина А.В.</h1><p class="s">Расписание полётов · банк заданий · ИИ-проверка работ</p>
+<nav><a href="#sch">Расписание</a><a href="#bank">Банк</a><a href="#ai">ИИ</a><a href="#hist">История</a><a href="#set">Настройки и Drive</a></nav>
+
+<section id="sch"><h2 class="or">📅 Расписание полётов <small class="m" id="sst"></small></h2><div class="tw" id="sbox"></div><p id="chk" class="m" style="font-size:12px;margin:6px 0"></p><details><summary class="m" style="cursor:pointer">Техническая информация: найденные записи и откуда они взяты</summary><pre id="lst"></pre></details>
+<div class="r"><button id="bsch">Обновить сейчас</button><button id="ed">Редактировать</button><button id="er">Сбросить мои правки</button><button id="vw">Показать по дням</button><button id="cps">Скопировать текстом</button><button id="cpt">Скопировать таблицей</button></div><p id="en" class="m"></p>
+<details><summary class="m" style="cursor:pointer">Запасной способ: вставить расписание вручную</summary>
+<p class="m">Откройте таблицу, выделите всё (Ctrl+A), скопируйте (Ctrl+C) и вставьте сюда.</p>
+<textarea id="pt" rows="5"></textarea><button id="bpt">Построить моё расписание</button></details>
+<details><summary class="m" style="cursor:pointer">Как сайт видит таблицу (для диагностики)</summary><pre id="dg"></pre></details></section>
+
+<section id="bank"><h2 class="gr">📚 Банк заданий <span id="bl"></span></h2><div class="tabs" id="tc"></div><div class="tabs" id="ts"></div>
+<div class="g"><div><input id="bt" placeholder="Название"><textarea id="bx" rows="4" placeholder="Текст задания или ссылка"></textarea>
+<input id="bf" type="file" multiple><button class="main" id="badd">Добавить в банк</button></div><div id="bi"></div></div></section>
+
+<section id="ai"><h2 class="cy">🛰️ ИИ-помощник: решить или проверить работу</h2>
+<div class="tabs"><button class="tab on" id="m1">Решить задачи</button><button class="tab" id="m2">Проверить работу ученика</button></div>
+<div class="drop" id="drop">Фото работы (можно несколько): нажмите, перетащите или вставьте Ctrl+V</div><input type="file" id="pf" accept="image/*" multiple hidden><div class="pv" id="pv"></div>
+<input id="at" placeholder="Название работы / ученик (например: Иванов, КР №2)">
+<textarea id="ax" rows="3" placeholder="Условие текстом (если нужно) или ключ и критерии оценки"></textarea>
+<textarea id="wk" rows="4" style="display:none" placeholder="Текст работы ученика (если без фото): вставьте сюда"></textarea>
+<button class="main" id="go">🚀 Решить задачи</button>
+<details id="md" style="margin-top:12px"><summary class="m" style="cursor:pointer">Ручной режим: окно нейросети (если кнопка не сработала)</summary>
+<p class="m">1) «Скопировать запрос». 2) В окне прикрепите фото, вставьте запрос в поле Question и нажмите Submit. 3) Скопируйте ответ и нажмите «Вставить ответ из буфера и сохранить».</p>
+<div class="r"><button id="cpq">Скопировать запрос</button><a href="https://developer0hye-qwen2-5-vl-7b-instruct.hf.space/?__theme=dark" target="_blank" rel="noopener" style="color:var(--cy)">Открыть в отдельной вкладке</a></div>
+<div class="qw"><iframe id="qf" title="Qwen2.5-VL" allow="clipboard-write"></iframe></div>
+<div class="r"><button id="pa">📥 Вставить ответ из буфера и сохранить</button></div>
+<details id="ad"><summary class="m" style="cursor:pointer">Вставить ответ вручную</summary><textarea id="ans" rows="4" placeholder="Вставьте сюда ответ"></textarea><button id="sva">Сохранить в историю</button></details></details>
+<p class="m">ИИ может ошибаться, особенно с почерком: проверяйте результат. Фото попадают на сервер модели, поэтому фамилии учеников лучше не оставлять в кадре.</p></section>
+
+<section id="res"><h2 class="cy">📝 Результат</h2><div class="out" id="out">Здесь появится ответ…</div>
+<div class="r"><button id="bcp">Скопировать</button><button id="bpr">Печать</button><button id="bbk">В банк</button></div></section>
+
+<section id="hist"><h2 class="cy">🗃️ История <span id="hl"></span></h2><div id="hi"></div></section>
+
+<section id="set"><h2 class="or">⚙️ Настройки</h2><div class="g"><div><b>Google Drive (общие данные на всех устройствах)</b><input id="du" placeholder="Ссылка Apps Script (…/exec)"><input id="dc" type="password" placeholder="Секретный код" autocomplete="off">
+<span class="m" id="dst"></span></div></div>
+<div><b>Расписание: ссылка «Опубликовать в Интернете» (CSV) — если сайт видит таблицу не полностью</b><input id="pu" placeholder="https://docs.google.com/spreadsheets/d/e/…/pub?gid=…&output=csv"></div>
+<div class="r"><button id="bset" class="main" style="width:auto">Сохранить и синхронизировать</button></div>
+<details><summary class="m" style="cursor:pointer">Код для Google Apps Script</summary><pre id="gs"></pre><button id="bgs">Скопировать код</button></details></section></div>
+<script>
+const $=id=>document.getElementById(id),E=(t,p,...k)=>{const e=document.createElement(t);Object.assign(e,p||{});e.append(...k);return e};
+window.onerror=(m,u,l)=>{const b=$('err');b.textContent='Ошибка скрипта: '+m+' (строка '+l+')';b.style.display='block'};
+const LS={g:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}},s:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}}};
+const SHEET='1ueOAFLehClM39Wotmtd6LR8yddNTUC6cct6NA0ri-Mc',GID='2104677814',NAME='Гавшин',TNAME='Гавшина А.В.',ROOM='422';
+const M3=['Алгебра','Геометрия','Вероятность и статистика'];
+const CL={'6А':['Математика','Разговоры о важном','Материалы для космо направления'],'9А+9В':M3,'9Д':M3,'10Б':M3};
+const GS=`const CODE='ВАШ_СЕКРЕТНЫЙ_КОД';
+function f_(){const i=DriveApp.getFilesByName('cup-data.json');return i.hasNext()?i.next():DriveApp.createFile('cup-data.json','{}')}
+function out_(o){return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON)}
+function doGet(e){if(e.parameter.p!==CODE)return out_({error:'Неверный код'});
+if(e.parameter.a==='sched'){const sh=SpreadsheetApp.openById('${SHEET}').getSheets().filter(s=>s.getSheetId()==${GID})[0];return out_({rows:sh.getRange(1,1,Math.min(140,sh.getMaxRows()),Math.min(154,sh.getMaxColumns())).getDisplayValues()})}
+return out_(JSON.parse(f_().getBlob().getDataAsString()||'{}'))}
+function doPost(e){const d=JSON.parse(e.postData.contents);if(d.p!==CODE)return out_({error:'Неверный код'});f_().setContent(JSON.stringify(d.data));return out_({ok:1})}`;
+let cls=LS.g('cls','6А'),sub='',mode='solve',pics=[],last='';if(!CL[cls])cls='6A'.replace('A','А');sub=CL[cls][0];
+/* ---------- хранилище (IndexedDB, запасной вариант — память страницы) ---------- */
+const mem={bank:[],hist:[]};
+const idb=new Promise(r=>{try{const q=indexedDB.open('cup',1);q.onupgradeneeded=()=>{q.result.createObjectStore('bank',{keyPath:'id'});q.result.createObjectStore('hist',{keyPath:'id'})};q.onsuccess=()=>r(q.result);q.onerror=()=>r(null)}catch{r(null)}});
+const DB={async all(s){const d=await idb;if(!d)return mem[s];return new Promise(r=>{const q=d.transaction(s).objectStore(s).getAll();q.onsuccess=()=>r(q.result);q.onerror=()=>r([])})},
+async put(s,o){const d=await idb;if(!d){mem[s]=mem[s].filter(x=>x.id!=o.id).concat(o);return}return new Promise(r=>{const t=d.transaction(s,'readwrite');t.objectStore(s).put(o);t.oncomplete=r;t.onerror=r})},
+async del(s,id){const d=await idb;if(!d){mem[s]=mem[s].filter(x=>x.id!=id);return}return new Promise(r=>{const t=d.transaction(s,'readwrite');t.objectStore(s).delete(id);t.oncomplete=r;t.onerror=r})}};
+/* ---------- РАСПИСАНИЕ: разбор «странной» таблицы ---------- */
+//PARSE-START
+const DAYS=['понедельник','вторник','среда','четверг','пятница','суббота','воскресенье'];
+const CLS=['5А','5Б','5В','5Г','5Д','5Е','6А','6Б','6В','6Г','6Д','7А','7Б','7В','7Г','7Д','7Э','8А','8Б','8В','8Г','8Д','9А','9Б','9В','9Г','9Д','9Е','10А','10Б','10В','11А','11Б'];
+const TEACH=/[А-ЯЁ][а-яё-]+\s+[А-ЯЁ]\.\s?[А-ЯЁ]\./,LT={A:'А',B:'В',C:'С',E:'Е',H:'Н',K:'К',M:'М',O:'О',P:'Р',T:'Т',X:'Х',Y:'У'};
+const norm=x=>String(x).toLowerCase().replace(/[acepoxykmthb]/g,c=>({a:'а',c:'с',e:'е',p:'р',o:'о',x:'х',y:'у',k:'к',m:'м',t:'т',h:'н',b:'в'}[c]));
+const clsOf=x=>{const t=String(x).replace(/\s+/g,'').toUpperCase().replace(/[ABCEHKMOPTXY]/g,c=>LT[c]);if(t.length>12)return '';const m=t.match(/^\d{1,2}[А-ЯЁ]/);return m&&CLS.includes(m[0])?m[0]:''};
+const normCls=c=>c=='9А'||c=='9В'?'9А+9В':c;
+const MY=['6А','9А','9В','9Д','10Б'];
+const FIX={DF:'DC',DN:'DK'},ci=s=>[...s].reduce((a,ch)=>a*26+ch.charCodeAt(0)-64,0)-1;
+function parseDelim(t,d){const r=[];let row=[],c='',q=false;for(let i=0;i<t.length;i++){const ch=t[i];if(q){if(ch=='"'){if(t[i+1]=='"'){c+='"';i++}else q=false}else c+=ch}else if(ch=='"'&&c==='')q=true;else if(ch==d){row.push(c);c=''}else if(ch=='\n'){row.push(c);r.push(row);row=[];c=''}else if(ch!='\r')c+=ch}row.push(c);r.push(row);return r}
+const gKey=name=>norm(name||'Гавшин'),gTest=(x,k)=>norm(String(x).replace(/[\u200b-\u200d\u00ad\ufeff\s]/g,'')).includes(k);
+const countG=(m,name)=>{const k=gKey(name);let n=0;m.forEach(r=>r.forEach(c=>{if(gTest(c,k))n++}));return n};
+const suspects=(m,name)=>{const k=gKey(name),o=[];m.forEach((row,r)=>row.forEach((v,c)=>{if(!r||String(v).trim()!=ROOM)return;const a=String((m[r-1]||[])[c]||'').trim();if(a&&!gTest(a,k))o.push({a:cl(c)+r,t:a})}));return o};
+function parseSch(m,name){const key=norm(name||'Гавшин'),isG=x=>norm(String(x).replace(/[\u200b-\u200d\u00ad\ufeff\s]/g,'')).includes(key),out=[],g=(r,c)=>String((m[r]||[])[c]||'').trim();let fb=false;out.sk=[];
+ const hr=[];m.forEach((row,r)=>{if(row.some(x=>clsOf(x)))hr.push(r)});
+ const blockNo=r=>{let n=0,last=-9;for(const h of hr){if(h>r)break;if(h-last>3)n++;last=h}return n};
+ const add=(r,c,cell,rm)=>{let cls='',L=Math.max(0,c-8);
+  for(let rr=r-1;rr>=0&&!cls;rr--)for(let k=c;k>=Math.max(0,c-8);k--){const v=clsOf(g(rr,k));if(v){cls=v;L=k;break}}
+  if(rm?!MY.includes(cls):(cls&&!MY.includes(cls))){if(!rm)out.sk.push({a:cl(c)+(r+1),cls});return}
+  let day='',f2=false;for(let rr=r;rr>=0&&!day;rr--){const a=g(rr,0);if(a.length<60){const t=norm(a);day=DAYS.find(z=>t.includes(z))||''}}
+  if(!day){day=DAYS[blockNo(r)-1]||'';if(day)f2=true}
+  let subj='';{const fx=FIX[cl(c)];if(fx)for(const rr of [r,r-1])if(!subj)subj=g(rr,ci(fx))}
+  for(const rr of [r,r-1])for(let k=c-1;k>=Math.max(1,c-12)&&!subj;k--){const v=g(rr,k);if(v&&!TEACH.test(v)&&!/^[\d\/\s:.\-–—]+$/.test(v)&&!clsOf(v))subj=v}
+  if(rm&&!subj)return;if(f2)fb=true;
+  let room=g(r+1,c);if(!/\d/.test(room))room=g(r-1,c);if(!/\d/.test(room))room='';
+  let num='',tm='';for(const rr of [r,r-1,r+1]){if(!num&&/^\d{1,2}$/.test(g(rr,0)))num=g(rr,0);if(!tm&&/\d:\d\d/.test(g(rr,1)))tm=g(rr,1)}
+  const gm=String(cell).match(/:(\d)\s*$/);out.push({day,num,tm,cls:normCls(cls),subj:subj.replace(/\s+/g,' ').trim()+(gm?' (гр. '+gm[1]+')':''),room,a:cl(c)+(r+1),rm})};
+ m.forEach((row,r)=>row.forEach((cell,c)=>{if(isG(cell))add(r,c,cell,false)}));
+ m.forEach((row,r)=>row.forEach((v,c)=>{if(r&&String(v).trim()==ROOM&&!g(r-1,c))add(r-1,c,'',true)}));
+ out.fb=fb;return out}
+//PARSE-END
+const jp=()=>new Promise((ok,no)=>{const cb='g'+Date.now(),s=E('script'),end=()=>{delete window[cb];s.remove()},to=setTimeout(()=>{end();no()},10000);
+ window[cb]=d=>{clearTimeout(to);end();try{ok(d.table.rows.map(r=>d.table.cols.map((_,i)=>{const c=r.c[i];return c?String(c.f??c.v??''):''})))}catch{no()}};
+ s.onerror=()=>{clearTimeout(to);end();no()};s.src=`https://docs.google.com/spreadsheets/d/${SHEET}/gviz/tq?gid=${GID}&headers=0&range=A1:EX140&tqx=responseHandler:${cb}`;document.head.appendChild(s)});
+function sources(){const b=`https://docs.google.com/spreadsheets/d/${SHEET}`,n='&_='+Date.now(),q=`${b}/gviz/tq?tqx=out:csv&gid=${GID}&headers=0`,
+ cf=u=>async()=>{const r=await fetch(u),t=await r.text();if(!r.ok||/^\s*</.test(t))throw 0;return parseDelim(t,',')};
+ const D=LS.g('dr',{}),pu=LS.g('pub','');return [...(pu?[['опубликованная',cf(pu+(pu.includes('?')?'&':'?')+'_='+Date.now())]]:[]),...(D.url?[['Apps Script',async()=>{const r=await fetch(D.url+(D.url.includes('?')?'&':'?')+'a=sched&p='+encodeURIComponent(D.code||'')),d=await r.json();if(!d.rows)throw 0;return d.rows}]]:[]),['gviz+диапазон',cf(q+'&range=A1:EX140'+n)],['gviz',cf(q+n)],['export',cf(`${b}/export?format=csv&gid=${GID}${n}`)],['jsonp',jp]]}
+const oi=c=>{const i=Object.keys(CL).indexOf(c);return i<0?99:i};
+const TM={1:'08:30 – 09:10',2:'09:20 – 10:00',3:'10:20 – 11:00',4:'11:20 – 12:00',5:'12:20 – 13:00',6:'13:10 – 13:50',7:'14:00 – 14:40',8:'14:50 – 15:30'};
+const dcl=c=>c=='9А+9В'?'9АВ':c,dn=d=>d[0].toUpperCase()+d.slice(1),SH=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+let sv=LS.g('sv','day'),sd=Math.min((new Date().getDay()+6)%7,5),LAST=[],edit=false,ED=LS.g('ed',{});
+const numOf=l=>{const n=Number(l.num);if(n)return n;const t=(l.tm||'').replace(/^0/,'').slice(0,4);if(t)for(const k in TM)if(TM[k].replace(/^0/,'').startsWith(t))return Number(k);return 0};
+function model(L){const D=DAYS.filter((d,i)=>i<6||L.some(l=>l.day==d)),by={};
+ L.forEach(l=>{const n=numOf(l);if(!n||!l.day)return;const a=by[l.day+'|'+n]=by[l.day+'|'+n]||[];if(!a.some(z=>dcl(z.cls)==dcl(l.cls)&&z.subj==l.subj&&z.room==l.room))a.push(l)});
+ const orig=(d,n)=>(by[d+'|'+n]||[]).sort((a,b)=>oi(a.cls)-oi(b.cls)).map(l=>(dcl(l.cls)+' '+l.subj).trim()+(l.room&&l.room!=ROOM?' (каб. '+l.room+')':''));
+ const cell=(d,n)=>{const k=d+'|'+n;return k in ED?ED[k].split('\n').filter(Boolean):orig(d,n)};
+ return{D,orig,cell,mx:Math.max(8,...L.map(numOf)),tm:n=>TM[n]||(L.find(l=>numOf(l)==n&&l.tm)||{}).tm||''}}
+function saveCell(k,text,old){const t=text.split('\n').map(x=>x.trim()).filter(Boolean).join('\n');if(t==old.join('\n'))delete ED[k];else ED[k]=t;LS.s('ed',ED)}
+function drawSch(L){LAST=L;const box=$('sbox');box.textContent='';
+ if(!L.length)box.append(E('p',{className:'m',textContent:'Уроки из таблицы не найдены.'}));
+ const M=model(L);
+ const td=(d,n)=>{const k=d+'|'+n,x=M.cell(d,n),c=E('td',{className:(x.length?'ls':'')+(k in ED?' ed':'')});
+  if(edit){c.contentEditable='true';c.textContent=x.join('\n');c.onblur=()=>{saveCell(k,c.innerText,M.orig(d,n));c.classList.toggle('ed',k in ED)}}
+  else x.forEach(t=>c.append(E('div',{textContent:t})));return c};
+ $('vw').textContent=sv=='week'?'Показать по дням':'Показать неделю';$('ed').textContent=edit?'Готово':'Редактировать';
+ $('en').textContent=edit?'Нажмите на ячейку и измените текст. Правки хранятся только на этом устройстве и таблицу не меняют.':(Object.keys(ED).length?'Оранжевая рамка — ваши правки (только на этом устройстве).':'');
+ if(sv=='week'){const t=E('table');t.append(E('tr',{},...M.D.flatMap(d=>[E('th',{textContent:'№'}),E('th',{textContent:'Время'}),E('th',{textContent:dn(d)})])));
+  for(let n=1;n<=M.mx;n++)t.append(E('tr',{},...M.D.flatMap(d=>[E('td',{textContent:n}),E('td',{textContent:M.tm(n)}),td(d,n)])));box.append(t)}
+ else{if(sd>=M.D.length)sd=0;box.append(E('div',{className:'tabs'},...M.D.map((d,i)=>E('button',{className:'tab'+(i==sd?' on':''),textContent:SH[DAYS.indexOf(d)],onclick:()=>{sd=i;drawSch(LAST)}}))));
+  const t=E('table'),d=M.D[sd];t.append(E('caption',{textContent:dn(d)}),E('tr',{},...['№','Время','Урок'].map(h=>E('th',{textContent:h}))));
+  for(let n=1;n<=M.mx;n++)t.append(E('tr',{},E('td',{textContent:n}),E('td',{textContent:M.tm(n)}),td(d,n)));box.append(t)}
+ const un=L.filter(l=>!l.day||!numOf(l)),placed=L.length-un.length,lines=new Set(L.filter(l=>l.day&&numOf(l)).map(l=>[l.day,numOf(l),dcl(l.cls),l.subj,l.room].join('|'))).size;
+ if(un.length)box.append(E('p',{className:'m',textContent:'Не удалось определить день или номер урока: '+un.map(l=>(l.day||'?')+' '+dcl(l.cls)+' '+l.subj).join('; ')}));return{placed,lines,un}}
+const schText=()=>{const M=model(LAST);return M.D.map(d=>{const r=[];for(let n=1;n<=M.mx;n++){const c=M.cell(d,n);if(c.length)r.push(`${n}. ${M.tm(n)}  ${c.join('; ')}`)}return r.length?dn(d)+'\n'+r.join('\n'):''}).filter(Boolean).join('\n\n')};
+const schTsv=()=>{const M=model(LAST),o=[M.D.flatMap(d=>['№','Время',dn(d)]).join('\t')];for(let n=1;n<=M.mx;n++)o.push(M.D.flatMap(d=>[n,M.tm(n),M.cell(d,n).join(' / ')]).join('\t'));return o.join('\n')};
+async function copyText(t){if(!t)return alert('Нечего копировать');try{await navigator.clipboard.writeText(t);alert('Скопировано')}catch{const a=E('textarea',{value:t});a.style.cssText='position:fixed;opacity:0';document.body.append(a);a.select();let ok=false;try{ok=document.execCommand('copy')}catch{}a.remove();alert(ok?'Скопировано':'Не удалось скопировать: выделите текст вручную')}}
+const lst=L=>$('lst').textContent=[...L].sort((a,b)=>DAYS.indexOf(a.day)-DAYS.indexOf(b.day)||Number(a.num||99)-Number(b.num||99)).map(l=>`${l.a||'?'} → ${l.day||'день?'}, ${l.num||'№?'} урок, ${dcl(l.cls)||'класс?'}: ${l.subj||'предмет?'}${l.rm?' (найдено по кабинету '+ROOM+', фамилии в ячейке нет)':''}`).join('\n')+(L.sk&&L.sk.length?'\n\nПропущены (класс не из списка 6А, 9А, 9В, 9Д, 10Б): '+L.sk.map(x=>x.a+' '+x.cls).join(', '):'')||'нет данных';
+function chk(N,r,sus,K,sk){const e=$('chk');K=K||0;sk=sk||0;if(N==null){e.textContent='';return}const ok=N-sk+K==r.placed;e.style.color=ok&&!(sus&&sus.length)?'var(--gr)':'var(--or)';
+ e.textContent=(ok?'✔ ':'⚠ ')+`Записей «${TNAME}» в таблице: ${N}`+(sk?`, из них в чужих классах (пропущены): ${sk}`:'')+(K?`; найдено по кабинету ${ROOM} без фамилии: ${K}`:'')+`. Выведено уроков: ${r.placed}`+(r.placed>r.lines?` (9А и 9В с одинаковым уроком показаны одной строкой: ${r.placed-r.lines})`:'')+(ok?'.':`. Не хватает ${N-sk+K-r.placed}: ${r.un.map(l=>(l.day||'день?')+' '+(l.num||'№?')+' '+dcl(l.cls)+' '+l.subj).join('; ')||'проверьте раздел диагностики'}`)+(sus&&sus.length?` ⚠ Кабинет ${ROOM} есть ещё у ${sus.length} записей другого учителя или с другой фамилией: `+sus.slice(0,8).map(x=>x.a+' «'+x.t+'»').join('; '):'')}
+const cl=i=>{let s='';for(i++;i>0;i=(i-1)/26|0)s=String.fromCharCode(65+(i-1)%26)+s;return s};
+const dg=m=>{const el=$('dg');if(!m){el.textContent='нет данных';return}const f=[];m.forEach((r,i)=>r.forEach((c,j)=>{const v=clsOf(c);if(v&&f.length<80)f.push(v+'('+cl(j)+(i+1)+')')}));
+ el.textContent=`Размер: ${m.length} строк × ${Math.max(...m.map(r=>r.length))} столбцов\nКлассы в шапке: ${f.join(' ')||'не найдены'}\n\n`+m.slice(0,30).map((r,i)=>(i+1)+': '+r.slice(0,16).map(c=>String(c).trim().replace(/\s+/g,' ').slice(0,14)).join(' | ')).join('\n')};
+async function loadSch(){$('sst').textContent='· загрузка…';let best=null,first=null;
+ for(const [nm,f] of sources()){try{const m=await f();first=first||m;const l=parseSch(m,NAME);if(!best||l.length>best.l.length)best={m,l,nm}}catch{}}
+ let L=best?best.l:[],info='';
+ if(L.length){LS.s('lc',L);info=`из таблицы (${best.nm}, ${best.m.length}×${Math.max(...best.m.map(r=>r.length))})`+(L.fb?'. Названий дней нет: дни по порядку блоков':'')}
+ else{L=LS.g('lc',[]);info=L.length?'сохранённая копия':''}
+ const rr=drawSch(L);lst(L);dg(best?best.m:first);chk(best&&best.l.length?countG(best.m,NAME):null,rr,best?suspects(best.m,NAME):[],L.filter(l=>l.rm).length,L.sk?L.sk.length:0);
+ $('sst').textContent=L.length?`· ${info}, обновлено ${new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})}`:first?'· таблица прочитана, но «'+TNAME+'» не найдена':'· таблица недоступна: проверьте доступ «Все, у кого есть ссылка» или вставьте расписание вручную'}
+/* ---------- банк и история ---------- */
+const item=(t,m,bs)=>E('div',{className:'it'},E('div',{className:'b'},E('b',{textContent:t||'Без названия'}),E('span',{textContent:m||''})),E('div',{className:'bt'},...bs.map(([n,f,c])=>E('button',{textContent:n,onclick:f,className:c||''}))));
+const dl=(b,n)=>{const a=E('a',{href:URL.createObjectURL(b),download:n});document.body.append(a);a.click();a.remove()};
+const kick=(()=>{let t;return()=>{clearTimeout(t);t=setTimeout(sync,3000)}})();
+function tabs(){const mk=(box,arr,cur,fn)=>{box.textContent='';arr.forEach(v=>box.append(E('button',{className:'tab'+(v==cur?' on':''),textContent:v,onclick:()=>fn(v)})))};
+ mk($('tc'),Object.keys(CL),cls,v=>{cls=v;sub=CL[v][0];LS.s('cls',v);tabs();lists()});mk($('ts'),CL[cls],sub,v=>{sub=v;tabs();lists()});
+ $('bl').textContent='· '+cls+' · '+sub;$('hl').textContent='· '+cls}
+async function lists(){const bank=(await DB.all('bank')).filter(o=>o.cls==cls&&o.sub==sub).sort((a,b)=>b.ts-a.ts),bi=$('bi');bi.textContent='';
+ if(!bank.length)bi.append(E('p',{className:'m',textContent:'Пока пусто.'}));
+ bank.forEach(o=>{const bs=[];(o.files||[]).forEach(f=>{bs.push(['📎 '+f.name,()=>dl(f.blob,f.name)]);});
+  bs.push(['✕',()=>rm('bank',o.id),'x']);bi.append(item(o.title,o.text,bs))});
+ const H=(await DB.all('hist')).filter(o=>o.cls==cls).sort((a,b)=>b.ts-a.ts),hi=$('hi');hi.textContent='';
+ if(!H.length)hi.append(E('p',{className:'m',textContent:'История пуста.'}));
+ H.forEach(o=>hi.append(item(o.title,(o.kind=='check'?'ОЦЕНКА · ':'РЕШЕНИЕ · ')+o.sub+' · '+new Date(o.ts).toLocaleString('ru-RU'),[['Открыть',()=>show(o.result)],['В банк',()=>toBank(o.title,o.result)],['✕',()=>rm('hist',o.id),'x']])))}
+async function rm(s,id){if(!confirm('Удалить?'))return;await DB.del(s,id);LS.s('del',[...LS.g('del',[]),id]);lists();kick()}
+async function toBank(t,x,files){await DB.put('bank',{id:Date.now()+Math.random(),cls,sub,title:t,text:x,files:files||[],ts:Date.now()});lists();kick()}
+/* ---------- ИИ ---------- */
+const QURL='https://developer0hye-qwen2-5-vl-7b-instruct.hf.space';
+const shr=(f,m=1400,q=.8)=>new Promise(r=>{const i=new Image(),u=URL.createObjectURL(f);i.onload=()=>{const k=Math.min(1,m/Math.max(i.width,i.height)),c=E('canvas');c.width=i.width*k;c.height=i.height*k;c.getContext('2d').drawImage(i,0,0,c.width,c.height);URL.revokeObjectURL(u);r(c.toDataURL('image/jpeg',q))};i.onerror=()=>r(null);i.src=u});
+async function addPics(fs){for(const f of fs){if(!(f.type||'').startsWith('image/'))continue;const u=await shr(f);if(u)pics.push(u)}drawPics()}
+function drawPics(){const p=$('pv');p.textContent='';pics.forEach((u,i)=>p.append(E('img',{src:u,title:'Убрать',style:'cursor:pointer',onclick:()=>{pics.splice(i,1);drawPics()}})))}
+async function joinPics(){const ims=await Promise.all(pics.map(u=>new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=u}))),w=Math.max(...ims.map(i=>i.width)),hs=ims.map(i=>i.height*w/i.width),all=hs.reduce((a,b)=>a+b,0),k=Math.min(1,4000/all),c=E('canvas');
+ c.width=w*k;c.height=all*k;const g=c.getContext('2d');let y=0;ims.forEach((i,n)=>{g.drawImage(i,0,y,w*k,hs[n]*k);y+=hs[n]*k});return new Promise(r=>c.toBlob(r,'image/jpeg',.85))}
+function textBlob(t){const c=E('canvas'),g=c.getContext('2d'),L=[];g.font='28px sans-serif';t.split('\n').forEach(par=>{let l='';par.split(' ').forEach(w=>{if(l&&g.measureText(l+' '+w).width>1120){L.push(l);l=w}else l=l?l+' '+w:w});L.push(l)});
+ c.width=1200;c.height=L.length*40+40;g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.fillStyle='#000';g.font='28px sans-serif';L.forEach((l,i)=>g.fillText(l,40,50+i*40));return new Promise(r=>c.toBlob(r,'image/jpeg',.9))}
+const mkArgs=(ps,img,text)=>ps.map(p=>/image/i.test((p.component||'')+' '+(p.label||''))?img:(/text/i.test(p.component||'')||/question|вопрос/i.test(p.label||'')?text:p.parameter_default));
+let GC=null;
+async function qwenAsk(prompt,work){const {Client,handle_file}=await import('https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js');
+ GC=GC||await Client.connect(QURL);const eps=(await GC.view_api()).named_endpoints||{},name=Object.keys(eps).find(k=>(eps[k].parameters||[]).some(p=>/image/i.test((p.component||'')+' '+(p.label||''))));
+ if(!name)throw Error('у окна нейросети нет доступного API');
+ const blob=pics.length?await joinPics():await textBlob(work),res=await GC.predict(name,mkArgs(eps[name].parameters,handle_file?handle_file(blob):blob,prompt));
+ return String(res.data&&res.data[0]||'')}
+async function ask(){const tx=$('ax').value.trim(),w=$('wk').value.trim(),title=$('at').value.trim()||'Работа',work=mode=='check'?w||tx:tx;
+ if(!pics.length&&!work)return show('Добавьте фото или впишите текст.');
+ $('go').disabled=true;show('Нейросеть работает, обычно 30–120 секунд. Если Space «спал», он сначала просыпается…');
+ try{const text=(await Promise.race([qwenAsk(mkPrompt(tx,title),work),new Promise((_,no)=>setTimeout(()=>no(Error('долгое ожидание')),240000))])).trim();
+  if(!text)throw Error('пустой ответ');show(text);await DB.put('hist',{id:Date.now(),cls,sub,kind:mode,title,result:text,ts:Date.now()});lists();kick()}
+ catch(e){$('md').open=true;show('Ошибка: '+e.message+(/quota|gpu|exceeded/i.test(e.message)?' (у бесплатного Space закончилась очередь или квота, попробуйте позже)':'')+'\n\nМожно работать вручную: откройте «Ручной режим» ниже, нажмите «Скопировать запрос», загрузите фото в окно и вставьте запрос, а ответ потом вставьте обратно.')}
+ $('go').disabled=false}
+const show=t=>{last=t;$('out').textContent=t;$('res').scrollIntoView({behavior:'smooth'})};
+const setMode=m=>{mode=m;$('m1').className='tab'+(m=='solve'?' on':'');$('m2').className='tab'+(m=='check'?' on':'');$('go').textContent=m=='check'?'🚀 Проверить и оценить':'🚀 Решить задачи'};
+function mkPrompt(tx,title){const head=`Ты опытный школьный учитель математики. Класс: ${cls}, раздел: ${sub}. `;
+ const p=mode=='check'?head+`Проверь работу ученика «${title}». ${tx?'Ключ и критерии: '+tx:'Ключа нет: реши задачи сам и сверь.'} Формат: 1) ОЦЕНКА по 5-балльной шкале и число верных задач; 2) РАЗБОР по задачам (верно или ошибка, правильный ответ); 3) КОММЕНТАРИЙ ученику, 2–3 предложения. За верный ход с мелкой ошибкой снижай мягко. Если почерк неразборчив, скажи об этом, не выдумывай. Без LaTeX. По-русски.`
+ :head+`Реши все задачи. Сначала «БЫСТРАЯ СВЕРКА»: номер и ответ, по строке. Затем «РЕШЕНИЯ»: пошагово. Если неразборчиво, скажи, не выдумывай. Без LaTeX. По-русски.${tx?'\nУсловие: '+tx:''}`;
+ const w=$('wk').value.trim();return w&&mode=='check'?p+'\n\nТекст работы ученика:\n'+w:p}
+/* ---------- Google Drive через Apps Script ---------- */
+const b2a=b=>new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result);f.readAsDataURL(b)}),a2b=async u=>(await fetch(u)).blob(),dst=m=>$('dst').textContent=m;
+async function sync(){const S=LS.g('dr',{});if(!S.url)return;dst('синхронизация…');
+ try{const r=await fetch(S.url+(S.url.includes('?')?'&':'?')+'p='+encodeURIComponent(S.code||'')+'&_='+Date.now()),d=await r.json();if(d.error)throw Error(d.error);
+  const del=new Set([...(d.del||[]),...LS.g('del',[])]);LS.s('del',[...del]);
+  for(const s of ['bank','hist']){const have=new Set((await DB.all(s)).map(x=>x.id));
+   for(const o of d[s]||[])if(!del.has(o.id)&&!have.has(o.id))await DB.put(s,{...o,files:s=='bank'?await Promise.all((o.files||[]).map(async f=>({name:f.name,type:f.type,blob:await a2b(f.data)}))):undefined});
+   for(const o of await DB.all(s))if(del.has(o.id))await DB.del(s,o.id)}
+  const bank=await Promise.all((await DB.all('bank')).map(async o=>({...o,files:await Promise.all((o.files||[]).map(async f=>({name:f.name,type:f.type,data:await b2a(f.blob)})))})));
+  const w=await fetch(S.url,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({p:S.code||'',data:{bank,hist:await DB.all('hist'),del:[...del]}})}),j=await w.json();if(j.error)throw Error(j.error);
+  dst('✔ синхронизировано '+new Date().toLocaleTimeString('ru-RU'));lists()}catch(e){dst('ошибка: '+e.message)}}
+/* ---------- запуск ---------- */
+function init(){tabs();lists();loadSch();setInterval(()=>{if(!edit)loadSch()},300000);
+ const D=LS.g('dr',{});$('du').value=D.url||'';$('dc').value=D.code||'';$('pu').value=LS.g('pub','');$('gs').textContent=GS;
+ const saveAns=async t=>{t=(t||'').trim();if(!t)return alert('Сначала скопируйте ответ нейросети');show(t);await DB.put('hist',{id:Date.now(),cls,sub,kind:mode,title:$('at').value.trim()||'Работа',result:t,ts:Date.now()});lists();kick()};
+ $('pa').onclick=async()=>{try{await saveAns(await navigator.clipboard.readText())}catch{$('ad').open=true;alert('Браузер не дал прочитать буфер обмена. Вставьте ответ вручную в поле ниже.')}};
+ $('sva').onclick=async()=>{await saveAns($('ans').value);$('ans').value=''};
+ $('bsch').onclick=loadSch;$('vw').onclick=()=>{sv=sv=='week'?'day':'week';LS.s('sv',sv);drawSch(LAST)};$('ed').onclick=()=>{edit=!edit;drawSch(LAST)};$('er').onclick=()=>{if(confirm('Убрать все мои правки расписания?')){ED={};LS.s('ed',ED);drawSch(LAST)}};$('cps').onclick=()=>copyText(schText());$('cpt').onclick=()=>copyText(schTsv());
+ $('bpt').onclick=()=>{const p=$('pt').value;if(!p.trim())return;const mx=parseDelim(p,p.includes('\t')?'\t':','),L=parseSch(mx,NAME);const rr=drawSch(L);lst(L);dg(mx);chk(countG(mx,NAME),rr,suspects(mx,NAME),L.filter(l=>l.rm).length,L.sk?L.sk.length:0);if(L.length){LS.s('lc',L);$('sst').textContent='· из вставленного текста'}else $('sst').textContent='· в вставленном тексте «'+TNAME+'» не найдена'};
+ $('badd').onclick=async()=>{const t=$('bt').value.trim(),x=$('bx').value.trim(),fs=[...$('bf').files];if(!t&&!x&&!fs.length)return;
+  await toBank(t||(fs[0]&&fs[0].name)||'',x,fs.map(f=>({name:f.name,type:f.type,blob:f})));$('bt').value=$('bx').value=$('bf').value=''};
+ $('m1').onclick=()=>{setMode('solve');$('wk').style.display='none'};$('m2').onclick=()=>{setMode('check');$('wk').style.display=''};$('go').onclick=ask;
+ $('cpq').onclick=()=>copyText(mkPrompt($('ax').value.trim(),$('at').value.trim()||'Работа')+'\n\n(Фото работы прикрепите в окне нейросети.)');
+ $('md').ontoggle=()=>{if($('md').open&&!$('qf').getAttribute('src'))$('qf').src=QURL+'/?__theme=dark'};
+ $('drop').onclick=()=>$('pf').click();$('pf').onchange=e=>{addPics([...e.target.files]);e.target.value=''};
+ $('drop').ondragover=e=>e.preventDefault();$('drop').ondrop=e=>{e.preventDefault();addPics([...e.dataTransfer.files])};
+ document.addEventListener('paste',e=>{const f=[...(e.clipboardData&&e.clipboardData.files||[])];if(f.length)addPics(f)});
+ $('bcp').onclick=()=>copyText(last||$('out').textContent);
+ $('bpr').onclick=()=>{document.body.classList.add('pr');window.print()};window.onafterprint=()=>document.body.classList.remove('pr');
+ $('bbk').onclick=()=>last?toBank($('at').value.trim()||'Результат ИИ',last):0;
+ $('bset').onclick=()=>{LS.s('dr',{url:$('du').value.trim(),code:$('dc').value.trim()});LS.s('pub',$('pu').value.trim());sync();loadSch()};
+ $('bgs').onclick=()=>navigator.clipboard.writeText(GS).then(()=>alert('Код скопирован'));
+ idb.then(d=>{if(!d)$('err').textContent='Память браузера недоступна: данные сохранятся только до закрытия страницы. Откройте сайт через Chrome или разместите на хостинге.',$('err').style.display='block'});
+ sync()}
+init();
+</script></body></html>
